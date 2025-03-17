@@ -6,10 +6,13 @@
       name="viewport"
       content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width"
     />
+      <!-- Frame-Specific Metadata -->
+    <meta name="fc:frame" content='{"version": "next", "imageUrl": "https://pub-b8acacbdf4c34874a29a2fdaab996f29.r2.dev/pacman%20image%20without%20fun%20text.png", "button": {"title": "Start Yappin", "action": {"type": "launch_frame", "name": "yapyap", "url": "https://pub-b8acacbdf4c34874a29a2fdaab996f29.r2.dev/pacman%20image%20without%20fun%20text.png", "splashImageUrl": "https://pub-b8acacbdf4c34874a29a2fdaab996f29.r2.dev/pacman%20image%20without%20fun%20text.png", "splashBackgroundColor": "#FFFFFF"}}}'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
       navigator.serviceWorker.register?.('/service-worker.js').catch(() => {})
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@farcaster/frame-sdk/dist/index.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="manifest" href="manifest.json" />
     <meta charset="utf-8" />
@@ -21,6 +24,7 @@
     <script src="data.js"></script>
     <script src="utils.js"></script>
     <script src="macrodata.js"></script>
+    <script src="frameHandler.js"></script>
     <div id="p5_loading" class="loadingclass">Loading...</div>
   </body>
 </html>
