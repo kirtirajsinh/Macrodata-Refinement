@@ -189,10 +189,12 @@ function setup() {
       }
       thenumbers += "\n";
     }
+    thenumbers = thenumbers.trim();
     const timeStr = createTimeString(secondsSpentRefining);
     const msg = `In refining ${macrodataFile.coordinates} (${macrodataFile.fileName}) in ${timeStr} I have brought glory to the company.
-    Praise Kier.
-    ${thenumbers} 🧇🐐🔢💯
+    
+    Praise Kier $0x5a407d3ef1afa8164791e1a26a99fa39ed47009d.
+    ${thenumbers}   🧇🐐🔢💯
     `;
 
     // if (navigator.share) {
@@ -558,7 +560,10 @@ function mousePressed() {
   // Check if the footer button was clicked
   if (mouseY > g.height - 20 && mouseY < g.height) {
     // Open URL when footer is clicked
-    window.open("https://lumon-industries.com", "_blank");
+    window.open(
+      "https://zora.co/coin/base:0x5a407d3ef1afa8164791e1a26a99fa39ed47009d?referrer=0x9054E37Eac6D11791caF5b3a4fd9ec4Bc1B4dfD8",
+      "_blank"
+    );
     return;
   }
 
