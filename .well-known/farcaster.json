@@ -1,0 +1,18 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjY4NjEsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHhBNTkzMUE3MjZDRUNjYTA1N0EzRkY0M0E4NDg4MzQ2NjI2MDQ3OEI0In0",
+    "payload": "eyJkb21haW4iOiJtYWNyb2RhdGEtcmVmaW5lbWVudC1sdW1vbi52ZXJjZWwuYXBwIn0",
+    "signature": "MHgxYjhlMGUwNWViM2NlOTcwMTJlNmY3YjdhYWQxNDdhNWY4NDIxZTA5ZWJiNGVhYjEwY2JkNDcwMmY2MmY5NTIzNjM3Y2Q0NWJhMTQ5OGFhYjBiNjZiYzNhMGY4MjNiY2FhYTJlNWIyYWMxOGM2MzgxNmE0NjU3M2UyNzY5MDE0MDFj"
+  },
+  "frame": {
+    "version": "1",
+    "name": "Macrodata Refinement",
+    "iconUrl": "https://pub-b8acacbdf4c34874a29a2fdaab996f29.r2.dev/lumonicon.png",
+    "homeUrl": "https://macrodata-refinement-lumon.vercel.app",
+    "imageUrl": "https://pub-b8acacbdf4c34874a29a2fdaab996f29.r2.dev/macrodatarefinementpng.png",
+    "buttonTitle": "Start Refiniming",
+    "splashImageUrl": "https://pub-b8acacbdf4c34874a29a2fdaab996f29.r2.dev/lumonicon.png",
+    "splashBackgroundColor": "#FFFFFF",
+    "webhookUrl": "https://macrodata-nodejs-api-git-main-kirtirajsinhs-projects.vercel.app//api/webhook"
+}
+}

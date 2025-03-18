@@ -20,7 +20,7 @@ let startTime = 0;
 let secondsSpentRefining = 0;
 let lastRefiningTimeStored = 0;
 
-const emojis = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
+const emojis = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"];
 
 // Info for "nope" state
 let nope = false;
@@ -52,27 +52,27 @@ let useShader;
 
 // Background and Foreground colours
 const mobilePalette = {
-  BG: '#010A13',
-  FG: '#ABFFE9',
-  SELECT: '#EEFFFF',
+  BG: "#010A13",
+  FG: "#ABFFE9",
+  SELECT: "#EEFFFF",
   LEVELS: {
-    'WO': '#05C3A8',
-    'FC': '#1EEFFF',
-    'DR': '#DF81D5',
-    'MA': '#F9ECBB',
-  }
+    WO: "#05C3A8",
+    FC: "#1EEFFF",
+    DR: "#DF81D5",
+    MA: "#F9ECBB",
+  },
 };
 
 const shaderPalette = {
-  BG: '#111111',
-  FG: '#99f',
-  SELECT: '#fff',
+  BG: "#111111",
+  FG: "#99f",
+  SELECT: "#fff",
   LEVELS: {
-    'WO': '#17AC97',
-    'FC': '#4ABCC5',
-    'DR': '#B962B0',
-    'MA': '#D4BB5E',
-  }
+    WO: "#17AC97",
+    FC: "#4ABCC5",
+    DR: "#B962B0",
+    MA: "#D4BB5E",
+  },
 };
 
 let palette = mobilePalette;
@@ -81,13 +81,13 @@ let palette = mobilePalette;
 let macrodataFile;
 
 function preload() {
-  lumon = loadImage('images/lumon.png');
-  nopeImg = loadImage('images/nope.png');
-  completedImg = loadImage('images/100.png');
-  sharedImg = loadImage('images/clipboard.png');
-  mdeGIF[0] = loadImage('images/mde.gif');
+  lumon = loadImage("images/lumon.png");
+  nopeImg = loadImage("images/nope.png");
+  completedImg = loadImage("images/100.png");
+  sharedImg = loadImage("images/clipboard.png");
+  mdeGIF[0] = loadImage("images/mde.gif");
 
-  crtShader = loadShader('shaders/crt.vert.glsl', 'shaders/crt.frag.glsl');
+  crtShader = loadShader("shaders/crt.vert.glsl", "shaders/crt.frag.glsl");
 }
 
 function startOver(resetFile = false) {
@@ -113,7 +113,7 @@ function startOver(resetFile = false) {
 
   if (resetFile) {
     macrodataFile.resetFile();
-    storeItem('secondsSpentRefining', 0);
+    storeItem("secondsSpentRefining", 0);
     secondsSpentRefining = 0;
     lastRefiningTimeStored = 0;
   }
@@ -161,12 +161,12 @@ function setup() {
   // p5 graphics element to draw our shader output to
   shaderLayer = createGraphics(g.width, g.height, WEBGL);
   shaderLayer.noStroke();
-  crtShader.setUniform('u_resolution', [g.width, g.height]);
+  crtShader.setUniform("u_resolution", [g.width, g.height]);
 
   smaller = min(g.width, g.height);
 
   macrodataFile = new MacrodataFile();
-  secondsSpentRefining = getItem('secondsSpentRefining') ?? 0;
+  secondsSpentRefining = getItem("secondsSpentRefining") ?? 0;
 
   sharedImg.resize(smaller * 0.5, 0);
   nopeImg.resize(smaller * 0.5, 0);
@@ -175,31 +175,39 @@ function setup() {
   // Width for the share 100% button
   const shw = completedImg.width;
   const shh = completedImg.height;
-  shareDiv = createDiv('');
+  shareDiv = createDiv("");
   shareDiv.hide();
   //shareDiv.style("background-color", "#AAA");
   shareDiv.position(g.width * 0.5 - shw * 0.5, g.height * 0.5 - shh * 0.5);
-  shareDiv.style('width', `${shw}px`);
-  shareDiv.style('height', `${shh}px`);
+  shareDiv.style("width", `${shw}px`);
+  shareDiv.style("height", `${shh}px`);
   shareDiv.mousePressed(function () {
-    let thenumbers = '';
+    let thenumbers = "";
     for (let r = 0; r < 5; r++) {
       for (let c = 0; c < 5; c++) {
         thenumbers += random(emojis);
       }
-      thenumbers += '\n';
+      thenumbers += "\n";
     }
     const timeStr = createTimeString(secondsSpentRefining);
     const msg = `In refining ${macrodataFile.coordinates} (${macrodataFile.fileName}) in ${timeStr} I have brought glory to the company.
-Praise Kier.
-${thenumbers}#mdrlumon #severance 🧇🐐🔢💯
-lumon-industries.com`;
+    Praise Kier.
+    ${thenumbers} 🧇🐐🔢💯
+    `;
 
     // if (navigator.share) {
     //   console.log("using navigator share");
     // } else {
-    console.log('navigator share not availabe, copy to clipboard!');
-    navigator.clipboard.writeText(msg);
+    // console.log("navigator share not availabe, copy to clipboard!");
+    // navigator.clipboard.writeText(msg);
+    // Encode the message for URL
+    const encodedMsg = encodeURIComponent(msg);
+
+    // Open Warpcast compose page with the message and embed
+    window.open(
+      `https://warpcast.com/~/compose?text=${encodedMsg}&embeds[]=https://macrodata-refinement-lumon.vercel.app/`,
+      "_blank"
+    );
     shared = true;
     //}
   });
@@ -295,7 +303,7 @@ function draw() {
     completedTime = millis() - startTime;
     completed = true;
     shareDiv.show();
-    console.log('completed!');
+    console.log("completed!");
   }
 
   if (completed && shared) {
@@ -304,7 +312,7 @@ function draw() {
   }
 
   g.background(palette.BG);
-  g.textFont('Courier');
+  g.textFont("Courier");
 
   drawTop(percent);
   drawNumbers();
@@ -376,7 +384,7 @@ function draw() {
     shaderLayer.shader(crtShader);
 
     // pass the image from canvas context in to shader as uniform
-    crtShader.setUniform('u_tex', g);
+    crtShader.setUniform("u_tex", g);
 
     // Resetting the backgroudn to black to check we're not seeing the original drawing output
     background(palette.BG);
@@ -390,7 +398,7 @@ function draw() {
     secondsSpentRefining += deltaTime / 1000;
     const roundedTime = round(secondsSpentRefining);
     if (roundedTime % 5 == 0 && roundedTime != lastRefiningTimeStored) {
-      storeItem('secondsSpentRefining', secondsSpentRefining);
+      storeItem("secondsSpentRefining", secondsSpentRefining);
       lastRefiningTimeStored = roundedTime;
     }
   }
@@ -419,7 +427,7 @@ function drawTop(percent) {
   g.stroke(palette.FG);
   g.strokeWeight(4);
   g.textSize(32);
-  g.textFont('Arial');
+  g.textFont("Arial");
   g.text(`${floor(nf(percent * 100, 2, 0))}% Complete`, w * 0.8, 50);
   if (macrodataFile) {
     g.fill(palette.FG);
@@ -447,7 +455,7 @@ function drawNumbers() {
     for (let j = 0; j < rows; j++) {
       let num = numbers[i + j * cols];
       if (!num) return;
-      
+
       if (num.binIt) {
         num.goBin();
         num.show();
@@ -507,14 +515,62 @@ function drawBottom() {
     }
     g.pop();
   }
+  // Footer button implementation
   g.rectMode(CORNER);
-  g.fill(palette.FG);
-  g.rect(0, g.height - 20, g.width, 20);
-  g.fill(palette.BG);
-  g.textFont('Courier');
+
+  // Check if mouse is hovering over the footer
+  let isHovering = mouseY > g.height - 20 && mouseY < g.height;
+
+  // Change background color on hover
+  if (isHovering) {
+    g.fill(palette.SELECT); // Use SELECT color for hover state
+  } else {
+    g.fill(palette.FG); // Use FG color for normal state
+  }
+
+  // Draw the footer background
+  // g.rect(0, g.height - 20, g.width, 20);
+
+  // Set text color to ensure contrast
+  if (isHovering) {
+    g.fill(palette.BG); // Use BG color for text on hover
+  } else {
+    g.fill(palette.BG); // Use BG color for text in normal state
+  }
+
+  g.textFont("Courier");
   g.textAlign(CENTER, CENTER);
-  g.textSize(baseSize * 0.8);
-  g.text(macrodataFile.coordinates, g.width * 0.5, g.height - 10);
+  g.textSize(baseSize * 2);
+  g.text("!Click me", g.width * 0.5, g.height - 10);
+}
+
+// function keyPressed() {
+//   // Press 'S' key to test the share functionality
+//   if (key === "s" || key === "S") {
+//     // Show the share div
+//     completed = true;
+//     shareDiv.show();
+//     console.log("Share div shown for testing!");
+//     return false; // Prevent default behavior
+//   }
+// }
+function mousePressed() {
+  // Check if the footer button was clicked
+  if (mouseY > g.height - 20 && mouseY < g.height) {
+    // Open URL when footer is clicked
+    window.open("https://lumon-industries.com", "_blank");
+    return;
+  }
+
+  // Original mousePressed code
+  if (!refining && !mde && !completed && !shared) {
+    refineTX = mouseX;
+    refineTY = mouseY;
+    refineBX = mouseX;
+    refineBY = mouseY;
+    refining = true;
+    nope = false;
+  }
 }
 
 function drawBinned() {
@@ -542,15 +598,15 @@ function toggleShader() {
 function drawCursor(xPos, yPos) {
   // prevents the cursor appearing in top left corner on page load
   if (xPos == 0 && yPos == 0) return;
-  g.push()
-  // this offset makes the box draw from point of cursor 
-  g.translate(xPos+10, yPos+10);
+  g.push();
+  // this offset makes the box draw from point of cursor
+  g.translate(xPos + 10, yPos + 10);
   g.scale(1.2);
   g.fill(palette.BG);
   g.stroke(palette.FG);
   g.strokeWeight(3);
   g.beginShape();
-  g.rotate(-PI/5);
+  g.rotate(-PI / 5);
   g.vertex(0, -10);
   g.vertex(7.5, 10);
   g.vertex(0, 5);
@@ -563,24 +619,24 @@ function windowResized(ev) {
   // TODO: lots of duplicated code from startOver, better to create something reusable
   resizeCanvas(windowWidth, windowHeight);
   g.resizeCanvas(windowWidth, windowHeight);
-  shaderLayer.resizeCanvas(windowWidth, windowHeight)
-  crtShader.setUniform('u_resolution', [g.width, g.height]);
+  shaderLayer.resizeCanvas(windowWidth, windowHeight);
+  crtShader.setUniform("u_resolution", [g.width, g.height]);
 
   smaller = min(g.width, g.height);
 
   sharedImg.resize(smaller * 0.5, 0);
   nopeImg.resize(smaller * 0.5, 0);
   completedImg.resize(smaller * 0.5, 0);
-  
+
   refined.forEach((bin) => bin.resize(g.width / refined.length));
-  
+
   r = (smaller - buffer * 2) / 10;
   baseSize = r * 0.33;
-   
+
   cols = floor(g.width / r);
   rows = floor((g.height - buffer * 2) / r);
-  let  wBuffer =  g.width - cols * r;
-  
+  let wBuffer = g.width - cols * r;
+
   for (let j = 0; j < rows; j++) {
     for (let i = 0; i < cols; i++) {
       let x = i * r + r * 0.5 + wBuffer * 0.5;

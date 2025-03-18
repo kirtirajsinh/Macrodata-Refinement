@@ -2,13 +2,15 @@ async function initFrame() {
   try {
     // Ensure FrameSDK is ready
     await frame.sdk.actions.ready();
-    console.log("FrameSDK is ready!", await frame.sdk.context);
-    // const user = await frame.Context;
+    const context = await frame.sdk.context;
 
-    // // Get user context
-    // const frameUser = await frame.sdk.context();
-
-    // console.log("FrameSDK User Context:", frameUser);
+    // Accessing client.added property
+    if (!context.client.added) {
+      console.log("Client added:", context.client.added);
+      await frame.sdk.actions.addFrame();
+    } else {
+      console.log("Client is already added");
+    }
   } catch (error) {
     console.error("Error initializing FrameSDK:", error);
   }
