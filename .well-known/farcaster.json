@@ -13,6 +13,6 @@
     "buttonTitle": "Start Refiniming",
     "splashImageUrl": "https://pub-b8acacbdf4c34874a29a2fdaab996f29.r2.dev/lumonicon.png",
     "splashBackgroundColor": "#FFFFFF",
-    "webhookUrl": "https://macrodata-nodejs-api-git-main-kirtirajsinhs-projects.vercel.app//api/webhook"
+    "webhookUrl": "https://macrodata-nodejs-api-git-main-kirtirajsinhs-projects.vercel.app/api/webhook"
 }
 }
